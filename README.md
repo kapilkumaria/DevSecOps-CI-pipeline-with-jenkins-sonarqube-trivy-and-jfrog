@@ -34,9 +34,9 @@ This project demonstrates how to set up and integrate a CI/CD pipeline using Jen
 
 2. Use the following command to SSH into your Ubuntu EC2 instance:
 
-```
-ssh -i "your-key.pem" ubuntu@your-instance-public-ip
-```
+   ```
+   ssh -i "your-key.pem" ubuntu@your-instance-public-ip
+   ```
 
 3. Download JFrog Installer
 
@@ -63,36 +63,53 @@ ssh -i "your-key.pem" ubuntu@your-instance-public-ip
      ```
      cd jfrog-platform-trial-pro*
      ```
-6. Run the Installer
+
+6. Install jq using apt:
+   
+   ```
+   sudo apt install jq -y
+   ```
+
+7. Install net-tools package:
+
+   * Run the following command to install the missing net-tools package:
+
+     ```
+     sudo apt update
+     sudo apt-get install net-tools
+     ```
+
+8. Run the Installer
 
    * Run the installation script:
 
      ```
      sudo ./install.sh
      ```
-7. Start JFrog Artifactory Service
+9. Start JFrog Artifactory Service
 
    * Start the Artifactory service with the following command:
      ```
      sudo systemctl start artifactory.service
      ```
 
-8. Start Xray Service
+10. Start Xray Service
 
    * Start the Xray service:
 
      ```
      sudo systemctl start xray.service
-    ```
+     ```
 
-9. Access JFrog Artifactory
+11. Access JFrog Artifactory
 
    * Open your browser and go to:
 
-   ```
-   http://<your-instance-public-ip>:8082/
-   ```
+     ```
+     http://<your-instance-public-ip>:8082/
+     ```
    * You can now access the JFrog Artifactory web interface.
+
 
 Next Steps . . . . 
 
