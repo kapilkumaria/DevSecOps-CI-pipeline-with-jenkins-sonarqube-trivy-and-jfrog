@@ -451,7 +451,7 @@ Step 9: Build the Pipeline
    1.2 Build the code using Maven.
    1.3 Run unit tests.
    1.4 Perform static code analysis using SonarQube.
-   1.5 Upload the built artifact to JFrog Artifactory.
+   1.5 Upload/Deploy the built artifact to JFrog Artifactory.
    1.6 Clean the Jenkins workspace.
 
 Step 10: Verify Results
@@ -459,35 +459,11 @@ Step 10: Verify Results
    1.1 SonarQube: Go to your SonarQube server and check the results of the static code analysis.
    1.2 JFrog Artifactory: Verify that the artifact has been uploaded to the specified Maven repository in Artifactory.
 
-    
+
+![jenkins](jenkins1.png)
+![jenkins](jenkins2.png)
 ![Jfrog](Jfrog.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Next Steps . . . . 
-
-
-
-
-
-Once JFrog Artifactory is up and running, proceed with the integration of Jenkins and SonarQube for CI/CD:
-
-    Set up Jenkins on a separate EC2 instance.
-    Install SonarQube for static code analysis.
-    Integrate JFrog as the artifact repository in Jenkins.
-    Build, scan, and deploy artifacts through the pipeline.
+![sonar](sonarqube1.png)
+![sonar](sonarqube2.png)
 
 
