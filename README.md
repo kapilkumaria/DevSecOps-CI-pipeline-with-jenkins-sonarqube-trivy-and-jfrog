@@ -13,64 +13,72 @@ This project demonstrates how to set up and integrate a CI/CD pipeline using Jen
 
 # Project Overview
 
-1. Setup JFrog Artifactory on an EC2 Ubuntu instance (t3.large)
+1. Setup JFrog Artifactory and SonarQube on an EC2 Ubuntu instance (t3.xlarge) - 1st EC2
     
     1.1 We will install and configure JFrog Artifactory on a dedicated EC2 instance.
 
-2. Pipeline Integration
+2. Setup JFrog Artifactory and SonarQube on an EC2 Ubuntu instance (t3.xlarge) - 2nd EC2
+
+    1.1 We will install and configure SonarQube on a dedicated EC2 instance.
+
+3. Pipeline Integration
     
-    1.2 Integrate JFrog with Jenkins and SonarQube for an end-to-end CI pipeline.
+    1.1 Integrate Jenkins with JFrog and SonarQube for an end-to-end CI pipeline.
 
 # Jfrog Artifactory SetUp
 ## Steps to Set Up JFrog Artifactory on an EC2 Ubuntu Instance
 ## Prerequisites
 
-> Ensure you have an Ubuntu EC2 instance running (t3.large is recommended for this setup).
+> Ensure you have an Ubuntu EC2 instance running (t3.xlarge is recommended for this setup).
     You should have SSH access to the instance.
 
 ## Installation Instructions
 
-1. SSH into the EC2 Instance
+Step 1: SSH into the EC2 Instance
 
-2. Use the following command to SSH into your Ubuntu EC2 instance:
+Step 2: Use the following command to SSH into your Ubuntu EC2 instance,
 
    ```
    ssh -i "your-key.pem" ubuntu@your-instance-public-ip
    ```
 
-3. Download JFrog Installer
+Step 3: Install Java
 
-   * Download the JFrog Artifactory installer using the following command:
-
-     ```
-     wget -O jfrog-deb-installer.tar.gz "https://releases.jfrog.io/artifactory/jfrog-prox/org/artifactory/pro/deb/jfrog-platform-trial-prox/[RELEASE]/jfrog-platform-trial-prox-[RELEASE]-deb.tar.gz"
-
-     # Replace [RELEASE] with the actual version number you want to install.
-     ```
-
-4. Extract the Installer
-
-   * Extract the downloaded tar file:
+   * JFrog Artifactory requires Java to run. Use the following commands to install OpenJDK 11,
 
      ```
-     tar -xvzf jfrog-deb-installer.tar.gz
+     sudo apt update
+     sudo apt install openjdk-11-jre -y
      ```
 
-5. Navigate into the Extracted Directory
+Step 4: Download and Extract JFrog Artifactory
 
-   * Move into the JFrog installation directory:
+   * Download the latest version of JFrog Artifactory from the official release repository,
 
      ```
-     cd jfrog-platform-trial-pro*
+     sudo su
+     
+     wget https://releases.jfrog.io/artifactory/artifactory-pro/org/artifactory/pro/jfrog-artifactory-pro/7.55.14/jfrog-artifactory-pro-7.55.14-linux.tar.gz
+     
+     tar -xvzf jfrog-artifactory-pro-7.55.14-linux.tar.gz
      ```
 
-6. Install jq using apt:
+Step 5: Navigate into the Extracted Directory
+
+     ```
+     cd artifactory-pro-7.55.14/
+     cd app/bin/
+     ```
+
+Step 6: Install JFrog Artifactory as a Service
    
-   ```
-   sudo apt install jq -y
-   ```
+   * To install JFrog Artifactory as a service, run the installation script,
+    
+     ```
+     ./installService.sh
+     ```
 
-7. Install net-tools package:
+Step 7: Install net-tools package:
 
    * Run the following command to install the missing net-tools package:
 
@@ -79,21 +87,23 @@ This project demonstrates how to set up and integrate a CI/CD pipeline using Jen
      sudo apt-get install net-tools
      ```
 
-8. Run the Installer
+Step 8: Configure Firewall Rules
 
-   * Run the installation script:
+   * Ensure the necessary ports are open for JFrog Artifactory,
 
      ```
-     sudo ./install.sh
+     ufw allow 8081
+     ufw allow 8082
      ```
-9. Start JFrog Artifactory Service
+Step 9: Start and Check Artifactory Service
 
-   * Start the Artifactory service with the following command:
+   * Start the Artifactory service using the systemctl command,
+     
      ```
-     sudo systemctl start artifactory.service
+     systemctl start artifactory.service
      ```
 
-10. Start Xray Service
+Step 10: Access JFrog Artifactory
 
    * Start the Xray service:
 
@@ -101,14 +111,17 @@ This project demonstrates how to set up and integrate a CI/CD pipeline using Jen
      sudo systemctl start xray.service
      ```
 
-11. Access JFrog Artifactory
+Step 11: Access JFrog Artifactory
 
-   * Open your browser and go to:
+   * Once the service is up and running, JFrog Artifactory will be accessible via the following ports,
 
      ```
-     http://<your-instance-public-ip>:8082/
+     8081: Artifactory
+     8082: API Access
+
+     # You can access the JFrog Artifactory UI by navigating to http://<server-ip>:8081.
      ```
-   * You can now access the JFrog Artifactory web interface.
+Step 12:  
 
 
 Next Steps . . . . 
