@@ -460,7 +460,10 @@ Step 10: Verify Results
    1.2 JFrog Artifactory: Verify that the artifact has been uploaded to the specified Maven repository in Artifactory.
 
     
-![Jfrog] (./Jfrog.png)
+![Jfrog](Jfrog.png)
+
+
+
 
 
 
