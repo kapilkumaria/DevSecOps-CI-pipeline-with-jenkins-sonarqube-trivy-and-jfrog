@@ -157,6 +157,112 @@ Step 3: View Artifacts and Binaries
     1.2 Navigate to Artifactory > Artifacts.
     1.3 Here, you'll be able to see all the artifacts and binaries stored in your newly created local Maven repository.
 
+# SonarQube Setup
+
+   * After setting up JFrog Artifactory, we will now install and configure SonarQube on the same EC2 instance to perform code quality analysis.
+
+## Prerequisites
+
+   1.1 Java Runtime Environment (JRE) 11 installed.
+   
+   1.2 A non-root user to run SonarQube, as Elasticsearch (used by SonarQube) cannot run with root privileges.
+
+## Installation Steps
+
+Step 1: Download SonarQube Community Edition
+
+   * To install SonarQube, download the latest version from the official SonarSource website:
+
+   ```
+   cd /opt
+   wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-x.x.zip
+
+   # Replace x.x with the latest version available from the SonarQube download page.
+   ```
+
+Step 2: Extract the Package
+
+   * Unzip the downloaded SonarQube package:
+
+   ```
+   unzip /opt/sonarqube-x.x.zip
+   ```
+
+Step 3: Change Ownership
+
+   * Before starting the SonarQube service, change the ownership of the SonarQube directory to a non-root user (this user should be created if it doesn’t exist):
+
+   ```
+   chown -R <sonar_user>:<sonar_user_group> /opt/sonarqube-x.x
+
+   # Replace <sonar_user> and <sonar_user_group> with the actual user and group you will use to manage SonarQube.
+   ```
+
+Step 4: Modify Configuration (Optional)
+
+   * If you need to modify default settings, such as database configuration or web port, edit the sonar.properties file:
+
+   ```
+   cd /opt/sonarqube-x.x/conf
+   nano sonar.properties
+   ```
+
+   Key configurations you might want to adjust:
+    
+   ``` 
+    Database Settings: sonar.jdbc.username, sonar.jdbc.password
+    Web Port: sonar.web.port=9000 (change this if you need a different port)
+   ```
+
+Step 5: Start SonarQube Service
+
+   * Navigate to the Linux binaries directory and start the SonarQube service:
+
+   ```
+   cd /opt/sonarqube-x.x/bin/linux-x86-64
+   ./sonar.sh start
+   ```
+
+   * Note: If you attempt to start SonarQube as the root user, it will fail due to Elasticsearch restrictions.
+
+   * If you encounter an error related to running SonarQube as the root user, refer to the next section to create a non-root user.
+
+Step 6: Create Non-Root User and Start Service
+
+   * To resolve the "cannot run Elasticsearch as root" error, create a non-root user and give it ownership of the SonarQube directory:
+
+   ```
+   sudo su -
+   useradd sonaradmin
+   chown -R sonaradmin:sonaradmin /opt/sonarqube
+   
+   # Switch to the newly created user and start SonarQube:
+   ```
+   ```
+   sudo su - sonaradmin
+   cd /opt/sonarqube/bin/linux-x86-64
+   ./sonar.sh start
+   ./sonar.sh status
+   ```
+   
+Step 7: Open SonarQube Port in Security Group
+
+   * Ensure that port 9000 is open in the EC2 instance's security group to allow access to the SonarQube web interface.
+
+   ```
+   sudo ufw allow 9000
+   ```
+
+Step 8: Access SonarQube in Browser
+
+   * Once the service is running, you can access SonarQube via a web browser at,
+ 
+   ```
+   http://<Public-IP>:9000
+   ```
+
+
+
 
 
 
