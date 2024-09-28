@@ -261,6 +261,24 @@ Step 8: Access SonarQube in Browser
    http://<Public-IP>:9000
    ```
 
+Step 9: Generate Token for Jenkins Integration
+
+   * To integrate SonarQube with Jenkins, follow these steps to generate a token in the SonarQube UI:
+
+     1.1 Go to Administration > Security > Users.
+   
+     1.2 Click on Tokens and generate a new token.
+   
+     1.3 Save this token as it will be used to authenticate Jenkins with SonarQube for code quality analysis.
+
+     * You will need this token when configuring SonarQube integration in Jenkins.
+
+
+
+
+
+
+
 
 
 
