@@ -163,9 +163,8 @@ Step 3: View Artifacts and Binaries
 
 ## Prerequisites
 
-   1.1 Java Runtime Environment (JRE) 11 installed.
-   
-   1.2 A non-root user to run SonarQube, as Elasticsearch (used by SonarQube) cannot run with root privileges.
+    1.1 Java Runtime Environment (JRE) 11 installed.
+    1.2 A non-root user to run SonarQube, as Elasticsearch (used by SonarQube) cannot run with root privileges.
 
 ## Installation Steps
 
@@ -265,11 +264,10 @@ Step 9: Generate Token for Jenkins Integration
 
    * To integrate SonarQube with Jenkins, follow these steps to generate a token in the SonarQube UI:
 
-     1.1 Go to Administration > Security > Users.
-   
-     1.2 Click on Tokens and generate a new token.
-   
-     1.3 Save this token as it will be used to authenticate Jenkins with SonarQube for code quality analysis.
+        
+         1.1 Go to Administration > Security > Users.
+         1.2 Click on Tokens and generate a new token.
+         1.3 Save this token as it will be used to authenticate Jenkins with SonarQube for code quality analysis.
 
      * You will need this token when configuring SonarQube integration in Jenkins.
 
@@ -334,13 +332,14 @@ Step 4: Install Required Jenkins Plugins
 
    * In the Jenkins UI, go to Manage Jenkins > Manage Plugins and install the following plugins:
 
-   1.1 SonarQube Scanner for Jenkins
-   1.2 Sonar Quality Gates Plugin
-   1.3 Artifactory Plugin
-   1.4 JFrog Plugin
-   1.5 Maven Integration Plugin
-   1.6 Maven Invoker Plugin
-   1.7 All suggested plugins
+    1.1 SonarQube Scanner for Jenkins
+    1.2 Sonar Quality Gates Plugin
+    1.3 Artifactory Plugin
+    1.4 JFrog Plugin
+    1.5 Maven Integration Plugin
+    1.6 Maven Invoker Plugin
+    1.7 GitHub Integration Plugin
+    1.8 All suggested plugins
 
 Step 5: Configure Maven in Jenkins
 
@@ -439,25 +438,25 @@ Step 8: Configure Credentials
 
    * In Jenkins, go to Manage Jenkins > Credentials and configure the following credentials:
 
-   1.1 Artifactory Credentials: Add a username and password for your JFrog Artifactory account.
-   1.2 SonarQube Credentials: Add the token generated in SonarQube as the sonar_auth_token.
+    1.1 Artifactory Credentials: Add a username and password for your JFrog Artifactory account.
+    1.2 SonarQube Credentials: Add the token generated in SonarQube as the sonar_auth_token.
 
 
 Step 9: Build the Pipeline
 
    * Trigger the build of the pipeline job you created. The build will:
 
-   1.1 Pull the code from the GitHub repository.
-   1.2 Build the code using Maven.
-   1.3 Run unit tests.
-   1.4 Perform static code analysis using SonarQube.
-   1.5 Upload/Deploy the built artifact to JFrog Artifactory.
-   1.6 Clean the Jenkins workspace.
+    1.1 Pull the code from the GitHub repository.
+    1.2 Build the code using Maven.
+    1.3 Run unit tests.
+    1.4 Perform static code analysis using SonarQube.
+    1.5 Upload/Deploy the built artifact to JFrog Artifactory.
+    1.6 Clean the Jenkins workspace.
 
 Step 10: Verify Results
 
-   1.1 SonarQube: Go to your SonarQube server and check the results of the static code analysis.
-   1.2 JFrog Artifactory: Verify that the artifact has been uploaded to the specified Maven repository in Artifactory.
+    1.1 SonarQube: Go to your SonarQube server and check the results of the static code analysis.
+    1.2 JFrog Artifactory: Verify that the artifact has been uploaded to the specified Maven repository in Artifactory.
 
 
 ![jenkins](jenkins1.png)
