@@ -41,7 +41,7 @@ Step 2: Use the following command to SSH into your Ubuntu EC2 instance,
    ```
    ssh -i "your-key.pem" ubuntu@your-instance-public-ip
 
-   # Allow inbound traffic port 8081 and 8082 from your IP 
+   # Allow inbound traffic port 22, 8081 and 8082 from your IP 
    ```
 
 Step 3: Install Java
