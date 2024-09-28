@@ -123,7 +123,43 @@ Step 11: Access JFrog Artifactory
 
      # You can access the JFrog Artifactory UI by navigating to http://<server-ip>:8081.
      ```
-Step 12:  
+
+# JFrog Artifactory UI Setup
+After successfully installing and starting JFrog Artifactory, follow these steps to configure your local repository using the JFrog UI.
+
+Step 1: Access JFrog Artifactory
+ 
+   * Open your browser and navigate to the JFrog Artifactory UI,
+
+   ```
+   http://<server-ip>:8081
+
+   # Log in using the default credentials or your configured admin account
+   ```
+    
+Step 2: Create a Local Maven Repository
+
+   * Once logged in, follow these steps to create a local repository for Maven artifacts:
+
+    1.1 In the top menu, click on Administration.
+    1.2 In the left sidebar, select Repositories.
+    1.3 Click on Add Repository and choose Local Repository from the options.
+    1.4 Select Maven as the Package Type.
+    1.5 In the Repository Key field, enter an identifier or name for your repository (e.g., maven-local).
+    1.6 Review any other configuration options you may want to adjust.
+    1.7 Click Create to set up your local Maven repository.
+
+Step 3: View Artifacts and Binaries
+   
+   * To view the artifacts and binaries uploaded to your repository:
+
+    1.1 Go to the Application section in the JFrog UI.
+    1.2 Navigate to Artifactory > Artifacts.
+    1.3 Here, you'll be able to see all the artifacts and binaries stored in your newly created local Maven repository.
+
+
+
+
 
 
 Next Steps . . . . 
