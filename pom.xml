@@ -5,7 +5,7 @@
   <artifactId>007-app-007</artifactId>
   <packaging>jar</packaging>
   <version>2.0-SNAPSHOT</version>
-  <name>my-app</name>
+  <name>weather</name>
   <url>https://maven.apache.org</url>
   <dependencies>
     <dependency>
