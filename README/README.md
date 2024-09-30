@@ -279,32 +279,29 @@ Step 9: Generate Token for Jenkins Integration
 
      * You will need this token when configuring SonarQube integration in Jenkins.
 
-# Jenkins Setup and Configuration with SonarQube and JFrog Artifactory
+# Jenkins Installation
 
   > Install Jenkins, configure it with SonarQube and JFrog Artifactory, and set up a Jenkins pipeline to build a  Maven project, perform static code analysis, and upload the artifacts to Artifactory.
 
 Step 1: Install Jenkins
 
-   * To install Jenkins on your EC2 instance, run the following commands,
+   * To install Jenkins on your EC2 instance (Ubuntu 22.04), run the following commands,
 
    ```
    sudo apt update
    sudo apt install openjdk-11-jre -y
-   wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
-   sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-   sudo apt update
-   sudo apt install jenkins -y
-   sudo systemctl start jenkins
-   sudo systemctl enable jenkins
-
-   sudo usemod -aG docker $USER
-   id docker
-   cat /etc/group
-
-   reboot
+   
+   sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+   https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+   echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+   https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+   /etc/apt/sources.list.d/jenkins.list > /dev/null
+   sudo apt-get update
+   sudo apt-get install jenkins -y
    ```
+# Jenkins Setup and Configuration with SonarQube and JFrog Artifactory
 
-Step 2: Install and Configure Maven
+Step 1: Install and Configure Maven
 
    * Jenkins requires Maven to build Java projects. Install Maven using the following commands,
 
@@ -324,7 +321,7 @@ Step 2: Install and Configure Maven
    M2=$M2_HOME/bin
    PATH=$PATH:$M2_HOME:$M2
    ```
-Step 3: Access the Jenkins Web UI
+Step 2: Access the Jenkins Web UI
 
    * Once Jenkins is installed, open a browser and access the Jenkins UI:
 
@@ -336,7 +333,7 @@ Step 3: Access the Jenkins Web UI
    ```
    sudo cat /var/lib/jenkins/secrets/initialAdminPassword
    ```
-Step 4: Install Required Jenkins Plugins
+Step 3: Install Required Jenkins Plugins
 
    * In the Jenkins UI, go to Manage Jenkins > Manage Plugins and install the following plugins:
 
@@ -349,14 +346,14 @@ Step 4: Install Required Jenkins Plugins
     1.7 GitHub Integration Plugin
     1.8 All suggested plugins
 
-Step 5: Configure Maven in Jenkins
+Step 4: Configure Maven in Jenkins
 
    * To configure Maven in Jenkins:
 
     1.1 Go to Manage Jenkins > Global Tool Configuration.
     1.2 Under Maven Installations, click Add Maven and set M2_HOME to /opt/maven.
 
-Step 6: Configure SonarQube in Jenkins
+Step 5: Configure SonarQube in Jenkins
 
     1.1 Go to Manage Jenkins > Global Tool Configuration.
     1.2 Under SonarQube Scanner, click Add SonarQube Scanner and check the box to Install automatically.
@@ -365,7 +362,7 @@ Step 6: Configure SonarQube in Jenkins
         Server URL: http://<Public-IP>:9000
         Server Authentication Token: Use the token you generated in the SonarQube UI.
 
-Step 7: Create a Pipeline Job in Jenkins
+Step 6: Create a Pipeline Job in Jenkins
 
     1.1 In Jenkins, create a new Pipeline Job.
     1.2 Under the Pipeline section, use the following settings:
@@ -373,7 +370,7 @@ Step 7: Create a Pipeline Job in Jenkins
  ![jenkins](jenkins_job.png)  
  
    
-Step 8: Configure Credentials
+Step 7: Configure Credentials
 
    * In Jenkins, go to Manage Jenkins > Credentials and configure the following credentials:
 
@@ -381,7 +378,7 @@ Step 8: Configure Credentials
     1.2 SonarQube Credentials: Add the token generated in SonarQube as the sonar_auth_token.
 
 
-Step 9: Build the Pipeline
+Step 8: Build the Pipeline
 
    * Trigger the build of the pipeline job you created. The build will:
 
@@ -392,7 +389,7 @@ Step 9: Build the Pipeline
     1.5 Upload/Deploy the built artifact to JFrog Artifactory.
     1.6 Clean the Jenkins workspace.
 
-Step 10: Verify Results
+Step 9: Verify Results
 
     1.1 SonarQube: Go to your SonarQube server and check the results of the static code analysis.
     1.2 JFrog Artifactory: Verify that the artifact has been uploaded to the specified Maven repository in Artifactory.
