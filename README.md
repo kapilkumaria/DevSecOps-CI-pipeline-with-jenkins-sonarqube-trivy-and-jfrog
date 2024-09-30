@@ -33,3 +33,14 @@ git clone https://github.com/kapilkumaria/CI-pipeline-with-jenkins-sonarqube-and
 ```
 
 Follow the detailed instructions in the [detailed README.md](./README/README.md) for setting up and running the pipeline.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+
+
+## Attribution
+
+This repository uses sample code from the [Jenkins Docs - Simple Java Maven App](https://github.com/jenkins-docs/simple-java-maven-app/tree/master) repository.
+
+Special thanks to the Jenkins community for providing this example as a starting point for integrating Jenkins with Maven and other CI tools.
