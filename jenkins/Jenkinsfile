@@ -10,7 +10,7 @@ pipeline {
      SONARQUBE_AUTH_TOKEN = credentials('sonar_token')
      
      // Artifactory details
-     ARTIFACTORY_URL = 'http://98.84.68.78:8082'
+     ARTIFACTORY_URL = 'http://98.84.68.78:8082/artfactory'
      ARTIFACTORY_REPO = 'maven1512'
      ARTIFACTORY_CREDENTIALS_ID = 'jfrog_cred'
     }
