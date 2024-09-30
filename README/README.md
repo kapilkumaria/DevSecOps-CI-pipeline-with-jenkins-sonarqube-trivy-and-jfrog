@@ -43,6 +43,14 @@ Step 2: Use the following command to SSH into your Ubuntu EC2 instance,
 
    # Allow inbound traffic port 22, 8081 and 8082 from your IP 
    ```
+### Important Note on EC2 Configuration
+
+When setting up Jenkins on an EC2 instance, it is highly recommended to associate an **Elastic IP** with the instance. 
+
+By default, the public IP of your EC2 instance changes every time the instance is stopped and started. If you don't use an Elastic IP, you'll need to update the Jenkins URL in **Jenkins > Manage Jenkins > Configure System > Jenkins URL** every time, which can cause Jenkins to behave slowly or cause connectivity issues.
+
+To avoid this, allocate an Elastic IP in AWS and associate it with your EC2 instance, ensuring that your Jenkins instance always remains accessible at the same IP address.
+
 
 Step 3: Install Java
 
