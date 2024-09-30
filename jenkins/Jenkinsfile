@@ -55,6 +55,12 @@ pipeline {
         stage('Upload to Artifactory') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'jfrog_cred', usernameVariable: 'ARTIFACTORY_USER', passwordVariable: 'ARTIFACTORY_PASSWORD')]) {
+                 // Check if the server config exists, if it does, remove it before adding a new one
+                     sh '''
+                         if jfrog config show artifactory-server-kk > /dev/null 2>&1; then
+                         jfrog config delete artifactory-server-kk --quiet
+                        fi
+                     '''
                  // Add the server configuration
                      sh '''
                          jfrog config add artifactory-server-kk --artifactory-url=$ARTIFACTORY_URL --user=$ARTIFACTORY_USER --password=$ARTIFACTORY_PASSWORD --interactive=false
