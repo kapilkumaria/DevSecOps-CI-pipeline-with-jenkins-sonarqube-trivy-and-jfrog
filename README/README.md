@@ -280,9 +280,7 @@ Step 9: Generate Token for Jenkins Integration
      * You will need this token when configuring SonarQube integration in Jenkins.
 
 # Jenkins Installation
-
-  > Install Jenkins, configure it with SonarQube and JFrog Artifactory, and set up a Jenkins pipeline to build a  Maven project, perform static code analysis, and upload the artifacts to Artifactory.
-
+  
 Step 1: Install Jenkins
 
    * To install Jenkins on your EC2 instance (Ubuntu 22.04), run the following commands,
@@ -300,6 +298,8 @@ Step 1: Install Jenkins
    sudo apt-get install jenkins -y
    ```
 # Jenkins Setup and Configuration with SonarQube and JFrog Artifactory
+
+> Configure Jenkins with SonarQube and JFrog Artifactory, and set up a Jenkins pipeline to build a  Maven project, perform static code analysis, and upload the artifacts to Artifactory.
 
 Step 1: Install and Configure Maven
 
