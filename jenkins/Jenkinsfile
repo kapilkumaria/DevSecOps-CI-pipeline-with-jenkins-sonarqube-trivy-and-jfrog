@@ -42,6 +42,8 @@ pipeline {
              withSonarQubeEnv('sonarqube') {
                  sh 'mvn sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_LOGIN'
              }
+           }
+        }
         stage('Upload to Artifactory') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'jfrog_cred', usernameVariable: 'ARTIFACTORY_USER', passwordVariable: 'ARTIFACTORY_PASSWORD')]) {
@@ -56,6 +58,6 @@ pipeline {
                 }
             } 
         }
-     }
+   }
 }
 
