@@ -367,8 +367,8 @@ Step 6: Configure SonarQube in Jenkins
 
 Step 7: Create a Pipeline Job in Jenkins
 
-   1.1 In Jenkins, create a new Pipeline Job.
-   1.2 Under the Pipeline section, use the following settings:
+    1.1 In Jenkins, create a new Pipeline Job.
+    1.2 Under the Pipeline section, use the following settings:
 
  ![jenkins](jenkins3.png)  
    
