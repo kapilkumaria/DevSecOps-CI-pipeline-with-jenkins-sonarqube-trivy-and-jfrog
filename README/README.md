@@ -370,7 +370,7 @@ Step 7: Create a Pipeline Job in Jenkins
     1.1 In Jenkins, create a new Pipeline Job.
     1.2 Under the Pipeline section, use the following settings:
 
- ![jenkins](Jenkins_Job.png)  
+ ![jenkins](jenkins_job.png)  
  
    
 Step 8: Configure Credentials
