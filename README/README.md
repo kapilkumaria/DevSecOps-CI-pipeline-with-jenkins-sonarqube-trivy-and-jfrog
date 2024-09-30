@@ -368,80 +368,10 @@ Step 6: Configure SonarQube in Jenkins
 Step 7: Create a Pipeline Job in Jenkins
 
    1.1 In Jenkins, create a new Pipeline Job.
-   1.2 Under the Pipeline section, use the following Jenkinsfile:
+   1.2 Under the Pipeline section, use the following settings:
 
-   ```
-   pipeline {
-    agent any
-    environment {
-        PATH = "/opt/maven/bin:$WORKSPACE:$PATH"
-        // Artifactory details
-        ARTIFACTORY_URL = 'http://<Public-IP>:8082/artifactory'
-        ARTIFACTORY_REPO = 'maven-repo'
-        ARTIFACTORY_CREDENTIALS_ID = 'jfrog_cred'
-        // SonarQube Environment
-        SONAR_HOST_URL = 'http://<Public-IP>:9000'
-        SONAR_PROJECT_KEY = 'back-end-project'  // Replace with your project key
-        SONAR_LOGIN = credentials('sonarqube')  // Credentials to authenticate with SonarQube
-        SONARQUBE_AUTH_TOKEN = credentials('sonar_auth_token')
-    }
-    stages {
-        stage('Checkout Code') {
-            steps {
-                git url: 'https://github.com/jenkins-docs/simple-java-maven-app.git', branch: 'master'
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'mvn -B -DskipTests clean package'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
-            }
-        }
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh 'mvn sonar:sonar -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_LOGIN'
-                }
-            }
-        }
-        stage('Install JFrog CLI') {
-            steps {
-                sh '''
-                curl -fL https://getcli.jfrog.io | sh
-                chmod +x jfrog
-                '''
-            }
-        }
-        stage('Upload to Artifactory') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: ARTIFACTORY_CREDENTIALS_ID, usernameVariable: 'ARTIFACTORY_USER', passwordVariable: 'ARTIFACTORY_PASSWORD')]) {
-                    sh '''
-                    jfrog rt config --url $ARTIFACTORY_URL --user $ARTIFACTORY_USER --password $ARTIFACTORY_PASSWORD --interactive=false
-                    '''
-                    sh '''
-                    jfrog rt u target/*.jar $ARTIFACTORY_REPO/$(date +%Y-%m-%d)/ --build-name=my-build --build-number=$BUILD_NUMBER
-                    '''
-                }
-            }
-        }
-    }
-    post {
-        always {
-            cleanWs()
-        }
-    }
-}
-```
-
+ ![jenkins](jenkins3.png)  
+   
 Step 8: Configure Credentials
 
    * In Jenkins, go to Manage Jenkins > Credentials and configure the following credentials:
