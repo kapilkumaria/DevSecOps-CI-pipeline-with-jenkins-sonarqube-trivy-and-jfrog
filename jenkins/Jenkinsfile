@@ -58,7 +58,7 @@ pipeline {
                  // Check if the server config exists, if it does, remove it before adding a new one
                      sh '''
                          if jfrog config show artifactory-server-kk > /dev/null 2>&1; then
-                         jfrog config delete artifactory-server-kk --quiet
+                         jfrog config rm artifactory-server-kk --quiet
                         fi
                      '''
                  // Add the server configuration
