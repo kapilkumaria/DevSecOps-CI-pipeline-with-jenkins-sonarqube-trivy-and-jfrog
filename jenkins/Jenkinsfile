@@ -17,8 +17,6 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-        //     git url: 'https://github.com/jenkins-docs/simple-java-maven-app.git', branch: 'master'
-        //     git url: 'https://github.com/kapilkumaria/simple-java-maven-app.git', branch: 'master'
                git url: 'https://github.com/kapilkumaria/CI-pipeline-with-jenkins-sonarqube-and-jfrog.git', branch: 'main'
             }
         }
