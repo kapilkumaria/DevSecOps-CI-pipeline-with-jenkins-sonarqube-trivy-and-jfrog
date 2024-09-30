@@ -1,6 +1,9 @@
 pipeline {
     agent any
-      stages {
+    environment {
+     PATH = "/opt/maven/bin:$WORKSPACE:$PATH"
+    }
+    stages {
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
