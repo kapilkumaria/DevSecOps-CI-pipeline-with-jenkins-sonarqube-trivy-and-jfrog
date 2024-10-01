@@ -267,8 +267,11 @@ Step 8: Access SonarQube in Browser
    ```
    http://<Public-IP>:9000
    ```
+### Secret Management
 
-Step 9: Generate Token for Jenkins Integration
+1. Jenkins Secret Management
+
+Step 9: Generate SonarQube Auth Token in Jenkins for Jenkins Integration
 
    * To integrate SonarQube with Jenkins, follow these steps to generate a token in the SonarQube UI:
 
@@ -278,6 +281,35 @@ Step 9: Generate Token for Jenkins Integration
          1.3 Save this token as it will be used to authenticate Jenkins with SonarQube for code quality analysis.
 
      * You will need this token when configuring SonarQube integration in Jenkins.
+
+>> Note: For Jenkins secrets, use the 'Jenkinsfile' [Jenkinsfile](./jenkins/Jenkinsfile): This file is configured to pull secrets directly from Jenkins' internal secret management system.
+
+2. AWS Secrets Manager
+
+Step 10: Store SonarQube Token in AWS Secrets Manager for Jenkins Integration
+
+For enhanced security, you can store the SonarQube token in AWS Secrets Manager and configure Jenkins to retrieve it during pipeline execution. Follow these steps:
+
+         10.1 Login to AWS Console
+         10.2 Navigate to AWS Secrets Manager and click on Store a new secret.
+         10.3 Choose Secret Type
+         10.4 Select Other type of secrets.
+         10.5 In the Key/Value pairs, add the following key-value:
+        
+         * SONAR_TOKEN: <paste your generated SonarQube token here>
+
+         10.6 Set Secret Name
+
+         * Name your secret (e.g., sonarqube-token).
+
+         10.7 Configure Access, Create IAM Role and attach role to EC2 instance
+    
+         * Set the necessary permissions (IAM roles or policies) that allow Jenkins to access the secret.  
+
+         * You will need this token when configuring SonarQube integration in Jenkins.
+
+   >> Note: For AWS Secrets Manager, use the 'Jenkinsfile.aws' [Jenkinsfile](./jenkins/Jenkinsfile.aws): This file is configured to fetch secrets from AWS Secrets Manager for secure access in the Jenkins pipeline.
+
 
 # Jenkins Installation
   
