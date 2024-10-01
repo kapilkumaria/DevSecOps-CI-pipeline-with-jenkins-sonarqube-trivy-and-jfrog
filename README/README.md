@@ -10,6 +10,7 @@ This project demonstrates how to set up and integrate a CI/CD pipeline using Jen
 3. Jenkins: Automation server for CI/CD pipeline.
 4. SonarQube: Tool for code quality analysis.
 5. JFrog Artifactory: Universal binary repository manager.
+6. AWS Secrets Manager: Secure storage for sensitive credentials like JFrog Artifactory and SonarQube secret information.
 
 # Project Overview
 
