@@ -15,7 +15,7 @@ This project demonstrates how to set up and integrate a CI/CD pipeline using Jen
 
 ## Setup JFrog Artifactory and SonarQube on an EC2 Ubuntu instance (t2.large) - Single EC2
 
-1.1 We will install and configure JFrog Artifactory and SonarQube on a single EC2 Ubuntu instance. The instance type used will be t2.large.
+1.1 We will install and configure Jenkins, JFrog Artifactory and SonarQube on a single EC2 Ubuntu instance. The instance type used will be t2.large.
 
 ## Pipeline Integration
 
