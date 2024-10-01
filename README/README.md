@@ -282,7 +282,7 @@ Step 9: Generate SonarQube Auth Token in Jenkins for Jenkins Integration
 
      * You will need this token when configuring SonarQube integration in Jenkins.
 
->> Note: For Jenkins secrets, use the 'Jenkinsfile' [Jenkinsfile](../jenkins/Jenkinsfile): This file is configured to pull secrets directly from Jenkins' internal secret management system.
+>> Note: For Jenkins secrets, use the [Jenkinsfile](../jenkins/Jenkinsfile): This file is configured to pull secrets directly from Jenkins' internal secret management system.
 
 2. AWS Secrets Manager
 
@@ -308,7 +308,7 @@ For enhanced security, you can store the SonarQube token in AWS Secrets Manager 
 
          * You will need this token when configuring SonarQube integration in Jenkins.
 
-   >> Note: For AWS Secrets Manager, use the 'Jenkinsfile.aws' [Jenkinsfile.aws](../jenkins/Jenkinsfile.aws): This file is configured to fetch secrets from AWS Secrets Manager for secure access in the Jenkins pipeline.
+   >> Note: For AWS Secrets Manager, use the [Jenkinsfile.aws](../jenkins/Jenkinsfile.aws): This file is configured to fetch secrets from AWS Secrets Manager for secure access in the Jenkins pipeline.
 
 
 # Jenkins Installation
