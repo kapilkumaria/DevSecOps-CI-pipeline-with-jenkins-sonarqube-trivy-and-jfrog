@@ -71,6 +71,16 @@ pipeline {
             }
         }
 
+        // New stage: Trivy Scan for JAR file
+        stage('Trivy Scan JAR') {
+            steps {
+                sh '''
+                export PATH=$PATH:$(pwd)/bin  # Ensure Trivy is in PATH
+                trivy fs --exit-code 1 --severity HIGH,CRITICAL ./target/*.jar
+                '''
+            }
+        }
+
         stage('Install JFrog CLI') {
             steps {
                 sh '''
