@@ -60,6 +60,17 @@ pipeline {
                 }
             }
         }
+
+        // New stage: Install Trivy
+        stage('Install Trivy') {
+            steps {
+                sh '''
+                curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh
+                export PATH=$PATH:$(pwd)/bin  # Add Trivy installation directory to PATH
+                '''
+            }
+        }
+
         stage('Install JFrog CLI') {
             steps {
                 sh '''
