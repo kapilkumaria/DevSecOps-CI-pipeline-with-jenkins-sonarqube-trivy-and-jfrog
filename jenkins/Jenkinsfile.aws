@@ -79,6 +79,11 @@ pipeline {
                 trivy fs --exit-code 1 --severity HIGH,CRITICAL ./target/*.jar
                 '''
             }
+            post {
+                failure {
+                    echo 'Security vulnerabilities found in the JAR file!'
+                }
+            }
         }
 
         stage('Install JFrog CLI') {
