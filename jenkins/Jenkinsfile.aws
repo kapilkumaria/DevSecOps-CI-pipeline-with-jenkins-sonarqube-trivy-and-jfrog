@@ -109,4 +109,11 @@ pipeline {
             }
         }
    }
+
+   post {
+        always {
+            echo 'Cleaning up workspace...'
+            cleanWs(deleteDir: true)  // Clean up the workspace using the plugin
+        }
+    }
 }
