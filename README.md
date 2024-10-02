@@ -3,7 +3,7 @@
  This project demonstrates how to automate the build, code quality analysis, and artifact management processes for a Java application using popular DevOps tools.
 
 
-[Diagram](diagram1.png)
+[Diagram](README/diagram1.png)
 
 
 ## What this repository includes
