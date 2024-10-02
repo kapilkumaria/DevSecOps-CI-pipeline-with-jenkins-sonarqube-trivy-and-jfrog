@@ -60,6 +60,32 @@ pipeline {
                 }
             }
         }
+
+        // New stage: Install Trivy
+        stage('Install Trivy') {
+            steps {
+                sh '''
+                curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh
+                export PATH=$PATH:$(pwd)/bin  # Add Trivy installation directory to PATH
+                '''
+            }
+        }
+
+        // New stage: Trivy Scan for JAR file
+        stage('Trivy Scan JAR') {
+            steps {
+                sh '''
+                export PATH=$PATH:$(pwd)/bin  # Ensure Trivy is in PATH
+                trivy fs --exit-code 1 --severity HIGH,CRITICAL ./target/*.jar
+                '''
+            }
+            post {
+                failure {
+                    echo 'Security vulnerabilities found in the JAR file!'
+                }
+            }
+        }
+
         stage('Install JFrog CLI') {
             steps {
                 sh '''
@@ -83,4 +109,11 @@ pipeline {
             }
         }
    }
+
+   post {
+        always {
+            echo 'Cleaning up workspace...'
+            cleanWs(deleteDirs: true)  // Clean up the workspace using the plugin
+        }
+    }
 }
