@@ -2,6 +2,10 @@
 
  This project demonstrates how to automate the build, code quality analysis, and artifact management processes for a Java application using popular DevOps tools.
 
+
+[Diagram](diagram1.png)
+
+
 ## What this repository includes
 
 This repository is designed to showcase the integration of the following tools in a CI pipeline:
