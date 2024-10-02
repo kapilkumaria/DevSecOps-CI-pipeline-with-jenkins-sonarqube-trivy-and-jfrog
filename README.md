@@ -1,4 +1,4 @@
-# CI Pipeline with Jenkins, SonarQube, and JFrog
+# DevSecOps CI Pipeline with Jenkins, SonarQube, Trivy and JFrog
 
  This project demonstrates how to automate the build, code quality analysis, and artifact management processes for a Java application using popular DevOps tools.
 
